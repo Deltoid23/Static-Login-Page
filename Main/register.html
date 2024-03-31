@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GRIET</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+     
+    }
+    header, footer {
+      background-color: #010a43;
+      color: #fff;
+      text-align: center;
+      padding: 10px 0;
+    }
+    nav {
+      background-color: #444;   
+      padding: 5px 0;
+      text-align: center;
+    }
+    nav a {
+      color: #e31b1b;
+      text-decoration: none;
+      padding: 10px 20px;
+    }
+    section {
+      padding: 20px;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Simple Website</h1>
+  </header>
+
+  <nav>
+    <a href="#" onclick="showRegisterPage()">Register</a>
+    <a href="#" onclick="showContactPage()">Contact</a>
+    <a href="#" onclick="showAboutPage()">About</a>
+  </nav>
+
+  <section id="content">
+    <h2>Welcome!</h2>
+    <p>Thanks for having a look!</p>
+  </section>
+
+
+  <script>
+    function showRegisterPage() {
+      document.getElementById("content").innerHTML = `
+        <h2>Register</h2>
+        <form id="registrationForm" onsubmit="return validateForm()">
+          <label for="username">Username:</label>
+          <input type="text" id="username" name="username" required><br>
+          <label for="email">Email:</label>
+          <input type="email" id="email" name="email" required><br>
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required><br>
+          <input type="submit" value="Submit">
+        </form>
+      `;
+    }
+
+    function showContactPage() {
+      document.getElementById("content").innerHTML = `
+        <h2>Contact Us</h2>
+        <p>Email: Example@.com</p>
+        <p>Phone: +910099887766</p>
+      `;
+    }
+
+    function showAboutPage() {
+      document.getElementById("content").innerHTML = `
+        <h2>About Us</h2>
+        <p>This is a simple website created using HTML, CSS, and JavaScript.</p>
+      `;
+    }
+
+    function validateForm() {
+      var username = document.getElementById("username").value;
+      var email = document.getElementById("email").value;
+      var password = document.getElementById("password").value;
+
+      var usernameRegex = /^[a-zA-Z0-9]+$/;
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+      var isValid = true;
+      var errorMessage = "";
+
+      if (!usernameRegex.test(username)) {
+        errorMessage += "Username can only contain letters and numbers.\n";
+        isValid = false;
+      }
+
+      if (!emailRegex.test(email)) {
+        errorMessage += "Invalid email address.\n";
+        isValid = false;
+      }
+
+      if (password.length < 8) {
+        errorMessage += "Password must be at least 8 characters long.\n";
+        isValid = false;
+      }
+
+      if (!isValid) {
+        alert(errorMessage);
+      }
+
+      return isValid;
+    }
+  </script>
+</body>
+</html>
